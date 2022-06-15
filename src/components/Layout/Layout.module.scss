@@ -1,0 +1,24 @@
+@import "../../styles/variables";
+
+.layout {
+   display: flex;
+   flex-direction: column;
+   flex: 1 1 auto;
+
+   .main {
+      display: flex;
+      flex: 1 1 auto;
+      flex-direction: column;
+      background: $color_lightGray;
+      padding: 1.5rem $layout_px;
+
+      .content {
+         display: flex;
+         flex-direction: column;
+         flex: 1 1 auto;
+         max-width: $xxl;
+         margin: 0 auto;
+         width: 100%;
+      }
+   }
+}

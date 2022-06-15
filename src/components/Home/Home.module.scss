@@ -1,0 +1,30 @@
+@import "../../styles/mixins";
+
+.home {
+   display: flex;
+   flex: 1 1 auto;
+   flex-direction: column;
+   background-color: #fff;
+
+   .content {
+      flex: 1 1 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .welcome {
+         text-align: center;
+         .welcome_text {
+            @include font-xl;
+            display: block;
+            padding: 1.5rem 0;
+         }
+         .btn_cont {
+            .link {
+               color: #fff;
+               display: block;
+               height: 100%;
+            }
+         }
+      }
+   }
+}

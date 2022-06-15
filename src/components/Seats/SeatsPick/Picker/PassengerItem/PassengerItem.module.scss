@@ -1,0 +1,48 @@
+@import "../../../../../styles/mixins";
+@import "../../../../../styles/variables";
+
+.psg {
+   border: 1px solid $color_lightGray;
+   display: flex;
+   gap: 3rem;
+   padding: 2.2rem 1.5rem;
+   box-shadow: 0 2px 5px rgba(2, 2, 2, 0.114);
+   transition: box-shadow 0.2s ease;
+
+   &:hover {
+      box-shadow: 0 3px 6px rgba(2, 2, 2, 0.184);
+   }
+
+   .psg_left {
+      display: flex;
+      gap: 2rem;
+      flex: 1 1 auto;
+
+      .psg_info {
+         display: flex;
+         gap: 1.25rem;
+
+         .icon {
+            color: $color_red;
+            font-size: 5.5rem;
+         }
+         .psg_data {
+            .psg_name {
+               color: $color_darkGray;
+            }
+         }
+         .psg_num {
+            @include font-xl;
+         }
+      }
+   }
+
+   .psg_right {
+      display: flex;
+      align-items: center;
+
+      a {
+         color: #fff;
+      }
+   }
+}

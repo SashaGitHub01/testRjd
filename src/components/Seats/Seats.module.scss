@@ -1,0 +1,15 @@
+@import "../../styles/mixins";
+
+.page {
+   background-color: #fff;
+
+   .header {
+      text-align: center;
+      padding: 2.5rem;
+      border-bottom: 1px solid rgba(36, 36, 36, 0.295);
+      p {
+         @include font-lg;
+         font-weight: 500;
+      }
+   }
+}

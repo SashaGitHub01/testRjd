@@ -1,0 +1,23 @@
+.slider {
+   position: relative;
+   .slide {
+      img {
+         max-height: 450px;
+         object-fit: cover;
+      }
+   }
+
+   .title {
+      position: absolute;
+      z-index: 2;
+      padding: 2rem 1.5rem;
+      bottom: 0;
+      left: 0;
+      .head {
+         font-weight: 700;
+         font-size: 5rem;
+         line-height: 3.5rem;
+         color: #fff;
+      }
+   }
+}

@@ -1,0 +1,12 @@
+@import "../../styles/mixins";
+@import "../../styles/variables";
+
+.routes {
+   .title {
+      padding: $layout_px;
+      .head {
+         @include font-xl;
+         font-weight: bold;
+      }
+   }
+}

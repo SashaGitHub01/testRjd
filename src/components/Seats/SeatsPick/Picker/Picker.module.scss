@@ -1,0 +1,15 @@
+@import "../../../../styles/variables";
+
+.picker_area {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding: 2.5rem 0;
+   border: 1px solid $color_darkGray;
+
+   .pick_row {
+      display: flex;
+      gap: 0.8rem;
+      align-items: center;
+   }
+}

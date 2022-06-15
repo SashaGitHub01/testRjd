@@ -1,0 +1,14 @@
+@import "../../../styles/variables";
+@import "../../../styles/mixins";
+
+.pick_cont {
+   padding: $layout_px;
+
+   .path {
+      padding: 1rem 0;
+      @include font-md;
+      h5 {
+         font-weight: 500;
+      }
+   }
+}

@@ -1,0 +1,54 @@
+@import "../../styles/mixins";
+@import "../../styles/variables";
+
+.page {
+   background-color: #fff;
+   flex: 1 1 auto;
+
+   .head {
+      text-align: center;
+      padding: 2.5rem;
+      border-bottom: 1px solid rgba(36, 36, 36, 0.295);
+      p {
+         @include font-lg;
+         font-weight: 500;
+      }
+   }
+
+   .content {
+      padding: 1.5rem $layout_px;
+
+      .psg_num {
+         @include font-xl;
+         color: $color_red;
+         font-weight: 500;
+      }
+
+      .content_head {
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+
+         ._btn {
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: $color_red;
+            gap: 0.5rem;
+
+            .del_icon {
+               font-size: 2rem;
+            }
+
+            span {
+               @include font-main;
+               color: $color_red;
+               line-height: 2rem;
+               text-decoration: underline;
+               text-decoration-style: dotted;
+            }
+         }
+      }
+   }
+}
