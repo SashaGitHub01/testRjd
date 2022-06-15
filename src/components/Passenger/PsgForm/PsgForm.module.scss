@@ -10,11 +10,33 @@
    .row {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 2.5rem;
    }
 
-   .input {
-      width: 100%;
+   .input_cont {
+      padding: 0 2.5rem;
+      flex: 0 0 33.33333%;
+      max-width: 33.33333%;
+      font-size: 1.6rem;
+
+      .input {
+         width: 100%;
+      }
+
+      .plus {
+         & p {
+            font-size: 1.8rem;
+         }
+      }
+   }
+
+   .text {
+      padding: 0 2.5rem;
+   }
+
+   .form_submit {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 4rem;
    }
 }

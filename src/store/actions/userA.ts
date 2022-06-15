@@ -1,10 +1,17 @@
-import { RouteI } from "../../types/Routes.interface"
-import { ActionsUser, RouteWithSeats, DeleteSeat, AddSeat } from "../types/user.types"
+import { PassengerI, PassengerInput } from "../../types/Passenger.types"
+import { ActionsUser, RouteWithSeats, DeleteSeat, AddSeat, UpdateSeat } from "../types/user.types"
 
 export const addSeat = ({ routeId, seatId }: { routeId: number, seatId: number }): AddSeat => (
    {
       type: ActionsUser.ADD_SEAT,
       payload: { routeId, seatId }
+   }
+)
+
+export const updateSeat = ({ routeId, seatId, data }: { routeId: number, seatId: number, data: PassengerInput }): UpdateSeat => (
+   {
+      type: ActionsUser.UPDATE_SEAT,
+      payload: { routeId, seatId, data }
    }
 )
 

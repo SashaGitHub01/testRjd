@@ -62,6 +62,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-datepicker": "^4.4.2",
     "@types/redux-devtools-extension": "^2.13.2"
   }
 }

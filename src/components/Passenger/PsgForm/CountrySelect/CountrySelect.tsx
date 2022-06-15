@@ -8,30 +8,34 @@ countries.registerLocale(ru)
 
 interface CountrySelectProps {
    onChange: any
-   [prop: string]: any
+   value: string
+   [prop: string]: any,
 }
 
-const CountrySelect: React.FC<PropsWithChildren<CountrySelectProps>> = ({ onChange, ...props }) => {
+const CountrySelect: React.FC<PropsWithChildren<CountrySelectProps>> = ({ onChange, value, ...props }) => {
    return (
-      <FormControl fullWidth>
-         <InputLabel id="mui-nation-label" required>
-            Гражданство
-         </InputLabel>
-         <Select
-            labelId="mui-nation-label"
-            className={s.select}
-            required
-            label='Гражданство'
-            {...props}
-            onChange={onChange}
-         >
-            {Object.values(countries.getNames('ru')).map(n => {
-               return <MenuItem value={n}>
-                  {n}
-               </MenuItem>
-            })}
-         </Select>
-      </FormControl>
+      <div className={s.input_cont}>
+         <FormControl fullWidth>
+            <InputLabel id="mui-nation-label" required>
+               Гражданство
+            </InputLabel>
+            <Select
+               labelId="mui-nation-label"
+               className={s.input}
+               required
+               label='Гражданство'
+               {...props}
+               onChange={onChange}
+               value={value}
+            >
+               {Object.values(countries.getNames('ru')).map(n => {
+                  return <MenuItem value={n} key={n}>
+                     {n}
+                  </MenuItem>
+               })}
+            </Select>
+         </FormControl>
+      </div>
    )
 }
 

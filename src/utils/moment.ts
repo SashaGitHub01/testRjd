@@ -14,5 +14,9 @@ export const momentUtils = {
          }
       })
       return moment.unix(start).from(moment.unix(start + dur))
+   },
+
+   getBirthDay(date: string) {
+      return moment(date).format('dd.MM.yyyy')
    }
 }

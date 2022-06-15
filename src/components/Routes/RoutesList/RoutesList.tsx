@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { useAppDispatch } from '../../../hooks/useAppDispatch'
 import { useTypedSelector } from '../../../hooks/useTypedSelector'
 import { fetchRoutesThunk } from '../../../store/actions/routesA'
+import Loader from '../../Loader/Loader'
 import RouteItem from '../RouteItem/RouteItem'
 import s from './RoutesList.module.scss'
 
@@ -21,7 +22,7 @@ const RoutesList: React.FC<PropsWithChildren<RoutesListProps>> = ({ }) => {
    return (
       <div className={s.list}>
          {isFetching
-            ? <CircularProgress />
+            ? <Loader />
             : routes && routes.map((r) => <RouteItem key={r.id} {...r} />)
          }
       </div>

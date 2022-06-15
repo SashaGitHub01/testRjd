@@ -15,4 +15,4 @@ export interface PassengerI {
    phoneNumber?: string
 }
 
-export type PassengerInput = Omit<PassengerI, 'id'>
+export type PassengerInput = Omit<PassengerI, 'id' | 'seat'>

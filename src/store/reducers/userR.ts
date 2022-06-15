@@ -24,6 +24,26 @@ export const userR = (state = initialState, action: ActionTypesUser): IState => 
             }
          }
 
+      case ActionsUser.UPDATE_SEAT:
+         return {
+            ...state,
+            routes: {
+               ...state.routes,
+               [action.payload.routeId]: [
+                  ...state.routes[action.payload.routeId].map(ps => {
+                     if (ps.seat === action.payload.seatId) {
+                        return {
+                           ...ps,
+                           ...action.payload.data
+                        }
+                     } else {
+                        return ps
+                     }
+                  })
+               ]
+            }
+         }
+
       case ActionsUser.DELETE_SEAT:
          return {
             ...state,
