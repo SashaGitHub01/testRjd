@@ -20,7 +20,8 @@ export const userR = (state = initialState, action: ActionTypesUser): IState => 
                   ...(state.routes?.[action.payload.routeId] || []),
                   {
                      id: action.payload.seatId,
-                     seat: action.payload.seatId
+                     seat: action.payload.seatId,
+                     ticketPrice: action.payload.price
                   }
                ]
             }
@@ -29,6 +30,7 @@ export const userR = (state = initialState, action: ActionTypesUser): IState => 
       case ActionsUser.UPDATE_SEAT:
          return {
             ...state,
+            error: null,
             routes: {
                ...state.routes,
                [action.payload.routeId]: [

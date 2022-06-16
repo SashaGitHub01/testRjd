@@ -32,6 +32,7 @@ const SeatsPage: React.FC<PropsWithChildren<SeatsPageProps>> = ({ }) => {
             ? <Loader />
             : route && <div className={s.seats_content}>
                <SeatsPick
+                  price={route.price}
                   from={route.from}
                   to={route.to}
                   routeId={id as string}

@@ -7,7 +7,9 @@ import { Link, useLocation } from 'react-router-dom';
 
 interface PassengerItemProps extends PassengerI { }
 
-const PassengerItem: React.FC<PropsWithChildren<PassengerItemProps>> = ({ firstName, lastName, fatherName, id, seat, }) => {
+const PassengerItem: React.FC<PropsWithChildren<PassengerItemProps>> = ({
+   firstName, ticketPrice, lastName, fatherName, id
+}) => {
    const loc = useLocation()
 
    return (
@@ -21,20 +23,31 @@ const PassengerItem: React.FC<PropsWithChildren<PassengerItemProps>> = ({ firstN
                   <p className={s.psg_num}>
                      Пассажир № {id}
                   </p>
-                  <div className={s.psg_name}>
-                     {firstName ? `${firstName} ${lastName} ${fatherName}` : "Введите данные пассажира"}
+                  <div className="">
+                     <div className="">
+                        <p className={s.psg_name}>
+                           Цена: {ticketPrice} руб.
+                        </p>
+                     </div>
+                     <div className={s.psg_name}>
+                        <p>
+                           {firstName ? `${firstName} ${lastName} ${fatherName}` : "Введите данные пассажира"}
+                        </p>
+                     </div>
                   </div>
                </div>
             </div>
          </div>
          <div className={s.psg_right}>
-            <Button
-               component={Link}
-               to={`${loc.pathname}/${id}`}
-               variant='contained'
-            >
-               Ввести данные
-            </Button>
+            <div className={s.psg_btn}>
+               <Button
+                  component={Link}
+                  to={`${loc.pathname}/${id}`}
+                  variant='contained'
+               >
+                  Ввести данные
+               </Button>
+            </div>
          </div>
       </div>
    )
