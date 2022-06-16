@@ -3,13 +3,12 @@ import { Link } from 'react-router-dom';
 import { IoTicketSharp as TicketIcon } from 'react-icons/io5'
 import s from './TicketsCount.module.scss'
 import { useTypedSelector } from '../../../../hooks/useTypedSelector';
+import { selectTicketsLength } from '../../../../store/selecotors/user';
 
 interface TicketsCountProps { }
 
 const TicketsCount: React.FC<PropsWithChildren<TicketsCountProps>> = ({ }) => {
-   const count = useTypedSelector(state => Object.values(state.user.routes).reduce((pr, curr) => {
-      return pr + curr.length
-   }, 0))
+   const count = useTypedSelector(selectTicketsLength)
 
    return (
       <li className={`${s.nav_item} ${s.check}`}>

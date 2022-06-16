@@ -3,6 +3,7 @@ import { useParams } from 'react-router'
 import { useAppDispatch } from '../../hooks/useAppDispatch'
 import { useTypedSelector } from '../../hooks/useTypedSelector'
 import { fetchRouteThunk } from '../../store/actions/currentRouteA'
+import { selectCurrentRoute } from '../../store/selecotors/currentRoute'
 import Loader from '../Loader/Loader'
 import s from './Seats.module.scss'
 import SeatsPick from './SeatsPick/SeatsPick'
@@ -12,7 +13,7 @@ interface SeatsPageProps { }
 const SeatsPage: React.FC<PropsWithChildren<SeatsPageProps>> = ({ }) => {
    const { id } = useParams()
    const dispatch = useAppDispatch()
-   const { route, isFetching } = useTypedSelector(state => state.currentRoute)
+   const { route, isFetching } = useTypedSelector(selectCurrentRoute)
 
    useEffect(() => {
       if (id) {

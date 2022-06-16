@@ -1,14 +1,14 @@
 import React, { PropsWithChildren } from 'react'
-import { useTypedSelector } from '../../../../../hooks/useTypedSelector'
+import { PassengerI } from '../../../../../types/Passenger.types'
 import PassengerItem from '../PassengerItem/PassengerItem'
 import s from './PassengersList.module.scss'
 
 interface PassengersListProps {
-   routeId: string
+   routeId: string,
+   passengers: PassengerI[]
 }
 
-const PassengersList: React.FC<PropsWithChildren<PassengersListProps>> = ({ routeId }) => {
-   const passengers = useTypedSelector(state => state.user.routes[routeId])
+const PassengersList: React.FC<PropsWithChildren<PassengersListProps>> = ({ routeId, passengers }) => {
 
    return (
       <div className={s.list}>

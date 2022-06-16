@@ -4,7 +4,9 @@ import { ActionsUser, ActionTypesUser, IState } from "../types/user.types";
 
 
 const initialState: IState = {
-   routes: {}
+   routes: {},
+   isFetching: false,
+   error: null
 }
 
 export const userR = (state = initialState, action: ActionTypesUser): IState => {
@@ -55,6 +57,20 @@ export const userR = (state = initialState, action: ActionTypesUser): IState => 
                   }))
                ]
             }
+         }
+
+      case ActionsUser.FETCH_CREATE:
+         return {
+            ...state,
+            isFetching: true,
+            error: null
+         }
+
+      case ActionsUser.SET_ERROR:
+         return {
+            ...state,
+            error: action.payload,
+            isFetching: false
          }
 
       default:

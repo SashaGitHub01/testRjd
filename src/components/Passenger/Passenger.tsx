@@ -8,13 +8,14 @@ import s from './Passenger.module.scss'
 import PsgForm from './PsgForm/PsgForm';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { deleteSeat } from '../../store/actions/userA';
+import { selectSpecifiedPsgr } from '../../store/selecotors/user';
 
 interface PassengerPageProps { }
 
 const PassengerPage: React.FC<PropsWithChildren<PassengerPageProps>> = ({ }) => {
    const { id, user } = useParams()
    const nav = useNavigate()
-   const passenger = useTypedSelector(state => state.user.routes[id as string]?.find((p) => p.id == user))
+   const passenger = useTypedSelector(state => selectSpecifiedPsgr(state, user as string, id as string))
    const dispatch = useAppDispatch()
 
    const handleDelete = () => {

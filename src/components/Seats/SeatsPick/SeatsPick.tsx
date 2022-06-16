@@ -2,6 +2,7 @@ import React, { PropsWithChildren, useEffect, useState } from 'react'
 import { useAppDispatch } from '../../../hooks/useAppDispatch';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { addSeat, deleteSeat } from '../../../store/actions/userA';
+import { selectUserPsgrs } from '../../../store/selecotors/user';
 import PassengersList from './Picker/PassengersList/PassengersList';
 import Picker from './Picker/Picker';
 import s from './SeatsPick.module.scss'
@@ -16,7 +17,7 @@ interface SeatsPickProps {
 
 
 const SeatsPick: React.FC<PropsWithChildren<SeatsPickProps>> = ({ seats, free, routeId, from, to }) => {
-   const myPassengers = useTypedSelector(state => state.user.routes[routeId])
+   const myPassengers = useTypedSelector(state => selectUserPsgrs(state, routeId))
    const [freeSeats, setFreeSeats] = useState(free)
    const [occupiedSeats, setOccupiedSeats] = useState<number[]>([])
    const dispatch = useAppDispatch()
@@ -58,7 +59,7 @@ const SeatsPick: React.FC<PropsWithChildren<SeatsPickProps>> = ({ seats, free, r
                {from} - {to}
             </h5>
          </div>
-         <PassengersList routeId={routeId} />
+         <PassengersList routeId={routeId} passengers={myPassengers} />
       </div>
    )
 }

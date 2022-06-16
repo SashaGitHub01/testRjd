@@ -1,9 +1,8 @@
-import { CircularProgress } from '@mui/material'
 import React, { PropsWithChildren, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { useAppDispatch } from '../../../hooks/useAppDispatch'
 import { useTypedSelector } from '../../../hooks/useTypedSelector'
 import { fetchRoutesThunk } from '../../../store/actions/routesA'
+import { selectAllRoutes } from '../../../store/selecotors/routes'
 import Loader from '../../Loader/Loader'
 import RouteItem from '../RouteItem/RouteItem'
 import s from './RoutesList.module.scss'
@@ -11,7 +10,7 @@ import s from './RoutesList.module.scss'
 interface RoutesListProps { }
 
 const RoutesList: React.FC<PropsWithChildren<RoutesListProps>> = ({ }) => {
-   const { routes, isFetching } = useTypedSelector(state => state.routes)
+   const { routes, isFetching } = useTypedSelector(selectAllRoutes)
    const dispatch = useAppDispatch()
 
    useEffect(() => {

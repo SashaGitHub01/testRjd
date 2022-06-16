@@ -2,8 +2,11 @@ import { useAppDispatch } from "./useAppDispatch"
 import * as Yup from 'yup'
 import { PassengerI, PassengerInput } from "../types/Passenger.types"
 import { useFormik } from "formik"
-import { updateSeat } from "../store/actions/userA"
+import { fetchCreatePsgrThunk, updateSeat } from "../store/actions/userA"
 import { useNavigate, useParams } from "react-router"
+import { useTypedSelector } from "./useTypedSelector"
+import { selectUserState } from "../store/selecotors/user"
+import { useEffect } from "react"
 
 interface PsgFormArgs {
    passenger: PassengerI
@@ -11,8 +14,13 @@ interface PsgFormArgs {
 
 export const usePassengerForm = ({ passenger }: PsgFormArgs) => {
    const dispatch = useAppDispatch()
+   const { error, isFetching } = useTypedSelector(selectUserState)
    const nav = useNavigate()
    const { id, user } = useParams()
+
+   const navOnSuccess = () => {
+      nav(`/seats/${id}`)
+   }
 
    const schema = Yup.object().shape({
       firstName: Yup.string().trim().max(50).required(),
@@ -47,16 +55,14 @@ export const usePassengerForm = ({ passenger }: PsgFormArgs) => {
 
       validationSchema: schema,
 
-      onSubmit: (values) => {
+      onSubmit: async (values) => {
          if (!id || !user) return;
-
-         dispatch(updateSeat({
-            data: values as PassengerInput,
-            routeId: +id,
-            seatId: +user
-         }))
-
-         nav(`/seats/${id}`)
+         dispatch(fetchCreatePsgrThunk(
+            values as PassengerInput,
+            +user,
+            +id,
+            navOnSuccess
+         ))
       }
    })
 
