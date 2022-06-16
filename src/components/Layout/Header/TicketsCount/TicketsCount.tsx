@@ -12,9 +12,9 @@ const TicketsCount: React.FC<PropsWithChildren<TicketsCountProps>> = ({ }) => {
 
    return (
       <li className={`${s.nav_item} ${s.check}`}>
-         <Link to={'/tickets'} className={s.nav_link}>
+         <div className={s.nav_link}>
             <TicketIcon className={s.ticket_icon} />
-         </Link>
+         </div>
          {count > 0
             && <div className={s.circle}>
                <p className={s.total}>
