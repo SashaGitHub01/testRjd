@@ -23,6 +23,7 @@ export interface AddSeat {
    type: ActionsUser.ADD_SEAT,
    payload: {
       routeId: number,
+      price: number,
       seatId: number
    }
 }

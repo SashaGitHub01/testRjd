@@ -12,11 +12,12 @@ interface SeatsPickProps {
    free: number[],
    routeId: string,
    from: string,
+   price: number,
    to: string
 }
 
 
-const SeatsPick: React.FC<PropsWithChildren<SeatsPickProps>> = ({ seats, free, routeId, from, to }) => {
+const SeatsPick: React.FC<PropsWithChildren<SeatsPickProps>> = ({ seats, free, routeId, from, price, to }) => {
    const myPassengers = useTypedSelector(state => selectUserPsgrs(state, routeId))
    const [freeSeats, setFreeSeats] = useState(free)
    const [occupiedSeats, setOccupiedSeats] = useState<number[]>([])
@@ -30,7 +31,7 @@ const SeatsPick: React.FC<PropsWithChildren<SeatsPickProps>> = ({ seats, free, r
    }, [freeSeats])
 
    const handleOccupy = (id: number) => {
-      dispatch(addSeat({ routeId: +routeId, seatId: id }))
+      dispatch(addSeat({ routeId: +routeId, seatId: id, price }))
       setFreeSeats(prev => prev.filter((val) => val !== id))
    }
 
@@ -59,7 +60,12 @@ const SeatsPick: React.FC<PropsWithChildren<SeatsPickProps>> = ({ seats, free, r
                {from} - {to}
             </h5>
          </div>
-         <PassengersList routeId={routeId} passengers={myPassengers} />
+         <PassengersList
+            routeId={routeId}
+            from={from}
+            to={to}
+            passengers={myPassengers}
+         />
       </div>
    )
 }

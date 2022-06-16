@@ -12,7 +12,8 @@ export interface PassengerI {
    documentId?: string,
    birth?: string,
    email?: string,
-   phoneNumber?: string
+   phoneNumber?: string,
+   ticketPrice: number
 }
 
 export type PassengerInput = Omit<PassengerI, 'id' | 'seat'>

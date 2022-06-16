@@ -12,7 +12,6 @@ const AppRouter: React.FC<PropsWithChildren<AppRouterProps>> = ({ }) => {
       <Routes>
          <Route path='/' element={<Home />} />
          <Route path='/routes' element={<RoutesPage />} />
-         <Route path='/newTicket' element={<div>tic</div>} />
          <Route path='/seats/:id' element={<Seats />} />
          <Route path='/seats/:id/:user' element={<PassengerPage />} />
       </Routes>
