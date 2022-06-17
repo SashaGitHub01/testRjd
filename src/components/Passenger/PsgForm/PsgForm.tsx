@@ -79,7 +79,9 @@ const PsgForm: React.FC<PropsWithChildren<PsgFormProps>> = ({ passenger }) => {
                <CountrySelect
                   value={formik.values.nationality}
                   name='nationality'
-                  onChange={formik.handleChange}
+                  onChange={formik.onSelectCountry}
+                  onBlur={formik.handleBlur}
+                  error={!!formik.errors.nationality}
                />
             </div>
             <div className={s.row}>
