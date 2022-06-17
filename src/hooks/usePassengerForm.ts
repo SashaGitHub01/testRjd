@@ -2,11 +2,8 @@ import { useAppDispatch } from "./useAppDispatch"
 import * as Yup from 'yup'
 import { PassengerI, PassengerInput } from "../types/Passenger.types"
 import { useFormik } from "formik"
-import { fetchCreatePsgrThunk, updateSeat } from "../store/actions/userA"
+import { fetchCreatePsgrThunk } from "../store/actions/userA"
 import { useNavigate, useParams } from "react-router"
-import { useTypedSelector } from "./useTypedSelector"
-import { selectUserState } from "../store/selecotors/user"
-import { useEffect } from "react"
 
 interface PsgFormArgs {
    passenger: PassengerI
@@ -14,7 +11,6 @@ interface PsgFormArgs {
 
 export const usePassengerForm = ({ passenger }: PsgFormArgs) => {
    const dispatch = useAppDispatch()
-   const { error, isFetching } = useTypedSelector(selectUserState)
    const nav = useNavigate()
    const { id, user } = useParams()
 
@@ -66,5 +62,9 @@ export const usePassengerForm = ({ passenger }: PsgFormArgs) => {
       }
    })
 
-   return { formik }
+   const onSelectCountry = (val: string) => {
+      formik.setFieldValue('nationality', val)
+   }
+
+   return { formik: { ...formik, onSelectCountry } }
 }

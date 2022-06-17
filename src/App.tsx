@@ -38,6 +38,22 @@ function App() {
             }
          },
 
+         MuiSvgIcon: {
+            styleOverrides: {
+               root: {
+                  fontSize: '1.6rem'
+               }
+            }
+         },
+
+         MuiAutocomplete: {
+            styleOverrides: {
+               option: {
+                  fontSize: '1.6rem'
+               }
+            }
+         },
+
          MuiMenuItem: {
             styleOverrides: {
                root: {

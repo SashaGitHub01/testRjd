@@ -1,4 +1,4 @@
-import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
+import { TextField, Autocomplete } from '@mui/material';
 import React, { PropsWithChildren } from 'react'
 import s from './CountrySelect.module.scss'
 import countries from 'i18n-iso-countries'
@@ -12,29 +12,31 @@ interface CountrySelectProps {
    [prop: string]: any,
 }
 
-const CountrySelect: React.FC<PropsWithChildren<CountrySelectProps>> = ({ onChange, value, ...props }) => {
+const CountrySelect: React.FC<PropsWithChildren<CountrySelectProps>> = ({ onChange, ...props }) => {
+
+   const handleSelect = (e: React.ChangeEvent<any>, v: any) => {
+      onChange(v)
+   }
+
    return (
       <div className={s.input_cont}>
-         <FormControl fullWidth>
-            <InputLabel id="mui-nation-label" required>
-               Гражданство
-            </InputLabel>
-            <Select
-               labelId="mui-nation-label"
-               className={s.input}
-               required
-               label='Гражданство'
-               {...props}
-               onChange={onChange}
-               value={value}
-            >
-               {Object.values(countries.getNames('ru')).map(n => {
-                  return <MenuItem value={n} key={n}>
-                     {n}
-                  </MenuItem>
-               })}
-            </Select>
-         </FormControl>
+         <Autocomplete
+            id="virtualize-demo"
+            options={Object.values(countries.getNames('ru'))}
+            sx={{ fontSize: '1.6rem' }}
+            onChange={handleSelect}
+            value={props.value || null}
+            renderInput={(params) => ((
+               <TextField
+                  {...params}
+                  name='nationality'
+                  required
+                  label="Гражданство"
+                  {...props}
+               />
+            ))}
+
+         />
       </div>
    )
 }
