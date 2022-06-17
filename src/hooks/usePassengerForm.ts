@@ -20,6 +20,7 @@ export const usePassengerForm = ({ passenger }: PsgFormArgs) => {
 
    const schema = Yup.object().shape({
       firstName: Yup.string().trim().max(50).required(),
+      gender: Yup.string().required(),
       lastName: Yup.string().trim().max(50).required(),
       fatherName: Yup.string().trim().max(50).required(),
       nationality: Yup.string().required(),
