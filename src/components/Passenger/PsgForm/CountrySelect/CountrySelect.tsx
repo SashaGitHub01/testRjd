@@ -3,6 +3,7 @@ import React, { PropsWithChildren } from 'react'
 import s from './CountrySelect.module.scss'
 import countries from 'i18n-iso-countries'
 import ru from 'i18n-iso-countries/langs/ru.json'
+import InputContainer from '../../../InputContainer/InputContainer';
 
 countries.registerLocale(ru)
 
@@ -19,7 +20,7 @@ const CountrySelect: React.FC<PropsWithChildren<CountrySelectProps>> = ({ onChan
    }
 
    return (
-      <div className={s.input_cont}>
+      <InputContainer>
          <Autocomplete
             id="virtualize-demo"
             options={Object.values(countries.getNames('ru'))}
@@ -37,7 +38,7 @@ const CountrySelect: React.FC<PropsWithChildren<CountrySelectProps>> = ({ onChan
             ))}
 
          />
-      </div>
+      </InputContainer>
    )
 }
 

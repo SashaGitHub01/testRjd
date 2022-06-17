@@ -6,6 +6,8 @@ import {
 } from '@mui/material'
 import CountrySelect from './CountrySelect/CountrySelect'
 import { usePassengerForm } from '../../../hooks/usePassengerForm'
+import InputContainer from '../../InputContainer/InputContainer'
+import BitrthSelect from './BitrthSelect/BitrthSelect'
 
 interface PsgFormProps {
    passenger: PassengerI
@@ -18,7 +20,7 @@ const PsgForm: React.FC<PropsWithChildren<PsgFormProps>> = ({ passenger }) => {
       <form className={s.form} onSubmit={formik.handleSubmit}>
          <div className={s.form_content}>
             <div className={s.row}>
-               <div className={s.input_cont}>
+               <InputContainer>
                   <TextField
                      onChange={formik.handleChange}
                      onBlur={formik.handleBlur}
@@ -29,8 +31,8 @@ const PsgForm: React.FC<PropsWithChildren<PsgFormProps>> = ({ passenger }) => {
                      error={!!formik.errors.lastName}
                      value={formik.values.lastName}
                   />
-               </div>
-               <div className={s.input_cont}>
+               </InputContainer>
+               <InputContainer>
                   <TextField
                      onChange={formik.handleChange}
                      onBlur={formik.handleBlur}
@@ -41,8 +43,8 @@ const PsgForm: React.FC<PropsWithChildren<PsgFormProps>> = ({ passenger }) => {
                      error={!!formik.errors.firstName}
                      value={formik.values.firstName}
                   />
-               </div>
-               <div className={s.input_cont}>
+               </InputContainer>
+               <InputContainer>
                   <TextField
                      onChange={formik.handleChange}
                      className={s.input}
@@ -53,12 +55,12 @@ const PsgForm: React.FC<PropsWithChildren<PsgFormProps>> = ({ passenger }) => {
                      error={!!formik.errors.fatherName}
                      value={formik.values.fatherName}
                   />
-               </div>
+               </InputContainer>
             </div>
             <div className={s.row}>
-               <div className={s.input_cont}>
+               <InputContainer>
                   <FormControl fullWidth >
-                     <InputLabel id="mui-gender-label" required>
+                     <InputLabel id="mui-gender-label" required error={!!formik.errors.gender}>
                         Пол
                      </InputLabel>
                      <Select
@@ -75,7 +77,7 @@ const PsgForm: React.FC<PropsWithChildren<PsgFormProps>> = ({ passenger }) => {
                         <MenuItem value={'Мужчина'}>Мужчина</MenuItem>
                      </Select>
                   </FormControl>
-               </div>
+               </InputContainer>
                <CountrySelect
                   value={formik.values.nationality}
                   name='nationality'
@@ -83,11 +85,16 @@ const PsgForm: React.FC<PropsWithChildren<PsgFormProps>> = ({ passenger }) => {
                   onBlur={formik.handleBlur}
                   error={!!formik.errors.nationality}
                />
+               <BitrthSelect
+                  setDate={formik.setBirthDate}
+                  error={!!formik.errors.birth}
+                  value={formik.values.birth}
+               />
             </div>
             <div className={s.row}>
-               <div className={s.input_cont}>
+               <InputContainer>
                   <FormControl fullWidth>
-                     <InputLabel id="mui-doc-label" required>
+                     <InputLabel id="mui-doc-label" required error={!!formik.errors.document}>
                         Документ
                      </InputLabel>
                      <Select
@@ -103,8 +110,8 @@ const PsgForm: React.FC<PropsWithChildren<PsgFormProps>> = ({ passenger }) => {
                         <MenuItem value={'Паспорт'}>Паспорт</MenuItem>
                      </Select>
                   </FormControl>
-               </div>
-               <div className={s.input_cont}>
+               </InputContainer>
+               <InputContainer>
                   <TextField
                      onChange={formik.handleChange}
                      className={s.input}
@@ -116,8 +123,8 @@ const PsgForm: React.FC<PropsWithChildren<PsgFormProps>> = ({ passenger }) => {
                      error={!!formik.errors.documentId}
                      value={formik.values.documentId}
                   />
-               </div>
-               <div className={s.input_cont}>
+               </InputContainer>
+               <InputContainer>
                   <TextField
                      onChange={formik.handleChange}
                      className={s.input}
@@ -128,7 +135,7 @@ const PsgForm: React.FC<PropsWithChildren<PsgFormProps>> = ({ passenger }) => {
                      variant='filled'
                      inputProps={{ maxLength: 10 }}
                   />
-               </div>
+               </InputContainer>
             </div>
             <div className={s.text}>
                <p>
@@ -136,7 +143,7 @@ const PsgForm: React.FC<PropsWithChildren<PsgFormProps>> = ({ passenger }) => {
                </p>
             </div>
             <div className={s.row}>
-               <div className={s.input_cont}>
+               <InputContainer>
                   <FormControl fullWidth>
                      <InputLabel htmlFor="mui-phone-label">
                         Номер телефона
@@ -156,8 +163,8 @@ const PsgForm: React.FC<PropsWithChildren<PsgFormProps>> = ({ passenger }) => {
                         value={formik.values.phoneNumber}
                      />
                   </FormControl>
-               </div>
-               <div className={s.input_cont}>
+               </InputContainer>
+               <InputContainer>
                   <TextField
                      onChange={formik.handleChange}
                      className={s.input}
@@ -167,7 +174,7 @@ const PsgForm: React.FC<PropsWithChildren<PsgFormProps>> = ({ passenger }) => {
                      error={!!formik.errors.email}
                      value={formik.values.email}
                   />
-               </div>
+               </InputContainer>
             </div>
          </div>
          <div className={s.form_submit}>

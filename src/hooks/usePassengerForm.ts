@@ -4,6 +4,7 @@ import { PassengerI, PassengerInput } from "../types/Passenger.types"
 import { useFormik } from "formik"
 import { fetchCreatePsgrThunk } from "../store/actions/userA"
 import { useNavigate, useParams } from "react-router"
+import { useCallback } from 'react'
 
 interface PsgFormArgs {
    passenger: PassengerI
@@ -34,7 +35,8 @@ export const usePassengerForm = ({ passenger }: PsgFormArgs) => {
          .matches(/^[0-9]+$/, "Must be only digits")
          .min(11)
          .max(11),
-      email: Yup.string().email()
+      email: Yup.string().email(),
+      birth: Yup.string().required()
    })
 
    const formik = useFormik({
@@ -48,6 +50,7 @@ export const usePassengerForm = ({ passenger }: PsgFormArgs) => {
          gender: passenger?.gender || '',
          email: passenger?.email || '',
          phoneNumber: passenger?.phoneNumber || '',
+         birth: passenger?.birth || ''
       },
 
       validationSchema: schema,
@@ -67,5 +70,9 @@ export const usePassengerForm = ({ passenger }: PsgFormArgs) => {
       formik.setFieldValue('nationality', val)
    }
 
-   return { formik: { ...formik, onSelectCountry } }
+   const setBirthDate = (date: string) => {
+      formik.setFieldValue('birth', date)
+   }
+
+   return { formik: { ...formik, onSelectCountry, setBirthDate } }
 }

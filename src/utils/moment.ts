@@ -1,4 +1,5 @@
 import moment from "moment";
+import 'moment/locale/ru'
 
 export const momentUtils = {
    getHours(num: number) {
@@ -6,7 +7,7 @@ export const momentUtils = {
    },
 
    getDuration(dur: number, start: number) {
-      moment.updateLocale('rus', {
+      moment.updateLocale('ru', {
          relativeTime: {
             past: "%s",
             h: '1 ч.',
@@ -16,7 +17,17 @@ export const momentUtils = {
       return moment.unix(start).from(moment.unix(start + dur))
    },
 
-   getBirthDay(date: string) {
-      return moment(date).format('dd.MM.yyyy')
+   getBirthDay(d: string, m: string, y: string) {
+      return `${d}.${m}.${y}`
+   },
+
+   getUnits() {
+      moment.locale('ru')
+      const months = moment.months()
+      const now = new Date().getUTCFullYear();
+      const years = Array(now - (now - 100)).fill('').map((v, idx) => now - idx);
+      const days = Array(31).fill('').map((v, idx) => idx + 1);
+
+      return { years, months, days }
    }
 }

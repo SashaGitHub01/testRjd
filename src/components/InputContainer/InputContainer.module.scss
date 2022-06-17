@@ -1,0 +1,12 @@
+.input_cont {
+   padding: 0 2.5rem;
+   flex: 0 0 33.33333%;
+   max-width: 33.33333%;
+   font-size: 1.6rem;
+
+   & > div,
+   input,
+   .MuiFormControl-root {
+      width: 100%;
+   }
+}
