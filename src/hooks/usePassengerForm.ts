@@ -55,6 +55,8 @@ export const usePassengerForm = ({ passenger }: PsgFormArgs) => {
 
       validationSchema: schema,
 
+      validateOnChange: false,
+
       onSubmit: async (values) => {
          if (!id || !user) return;
          dispatch(fetchCreatePsgrThunk(
@@ -66,13 +68,13 @@ export const usePassengerForm = ({ passenger }: PsgFormArgs) => {
       }
    })
 
-   const onSelectCountry = (val: string) => {
+   const onSelectCountry = useCallback((val: string) => {
       formik.setFieldValue('nationality', val)
-   }
+   }, [])
 
-   const setBirthDate = (date: string) => {
+   const setBirthDate = useCallback((date: string) => {
       formik.setFieldValue('birth', date)
-   }
+   }, [])
 
    return { formik: { ...formik, onSelectCountry, setBirthDate } }
 }

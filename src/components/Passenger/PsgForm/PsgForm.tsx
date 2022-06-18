@@ -89,6 +89,7 @@ const PsgForm: React.FC<PropsWithChildren<PsgFormProps>> = ({ passenger }) => {
                   setDate={formik.setBirthDate}
                   error={!!formik.errors.birth}
                   value={formik.values.birth}
+                  onBlur={formik.handleBlur}
                />
             </div>
             <div className={s.row}>

@@ -9,10 +9,11 @@ const dateUnits = momentUtils.getUnits()
 interface BitrthSelectProps {
    setDate: (d: string) => void,
    error: boolean,
-   value: string
+   value: string,
+   onBlur: any
 }
 
-const BitrthSelect: React.FC<PropsWithChildren<BitrthSelectProps>> = ({ setDate, value, error, ...props }) => {
+const BitrthSelect: React.FC<PropsWithChildren<BitrthSelectProps>> = ({ setDate, onBlur, value, error, ...props }) => {
    const [day, setDay] = useState('')
    const [month, setMonth] = useState('')
    const [year, setYear] = useState('')
@@ -58,6 +59,7 @@ const BitrthSelect: React.FC<PropsWithChildren<BitrthSelectProps>> = ({ setDate,
                value={day}
                onChange={changeDay}
                error={error}
+               onBlur={onBlur}
             >
                {dateUnits.days.map((d, i) => <MenuItem key={d + i} value={d}>{d}</MenuItem>)}
             </Select>
@@ -73,6 +75,7 @@ const BitrthSelect: React.FC<PropsWithChildren<BitrthSelectProps>> = ({ setDate,
                value={month}
                onChange={changeMonth}
                error={error}
+               onBlur={onBlur}
             >
                {dateUnits.months.map((m, i) => <MenuItem key={m + i} value={i + 1}>{m}</MenuItem>)}
             </Select>
@@ -88,6 +91,7 @@ const BitrthSelect: React.FC<PropsWithChildren<BitrthSelectProps>> = ({ setDate,
                value={year}
                onChange={changeYear}
                error={error}
+               onBlur={onBlur}
             >
                {dateUnits.years.map((y, i) => <MenuItem key={i} value={y}>{y}</MenuItem>)}
             </Select>
