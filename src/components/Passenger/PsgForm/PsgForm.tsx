@@ -182,7 +182,7 @@ const PsgForm: React.FC<PropsWithChildren<PsgFormProps>> = ({ passenger }) => {
             <Button
                variant='contained'
                type='submit'
-               disabled={!formik.isValid || !formik.dirty || formik.isSubmitting}
+               disabled={!formik.dirty || formik.isSubmitting}
             >
                Сохранить
             </Button>
