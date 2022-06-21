@@ -2,7 +2,7 @@ import { useAppDispatch } from "./useAppDispatch"
 import * as Yup from 'yup'
 import { PassengerI, PassengerInput } from "../types/Passenger.types"
 import { useFormik } from "formik"
-import { fetchCreatePsgrThunk } from "../store/actions/userA"
+import { createPsgrSaga, fetchCreatePsgrThunk } from "../store/actions/userA"
 import { useNavigate, useParams } from "react-router"
 import { useCallback } from 'react'
 
@@ -59,12 +59,18 @@ export const usePassengerForm = ({ passenger }: PsgFormArgs) => {
 
       onSubmit: async (values) => {
          if (!id || !user) return;
-         dispatch(fetchCreatePsgrThunk(
-            values as PassengerInput,
-            +user,
-            +id,
-            navOnSuccess
-         ))
+         // dispatch(fetchCreatePsgrThunk(
+         //    values as PassengerInput,
+         //    +user,
+         //    +id,
+         //    navOnSuccess
+         // ))
+         dispatch(createPsgrSaga({
+            data: values as PassengerInput,
+            seatId: +user,
+            routeId: +id,
+            nav: navOnSuccess
+         }))
       }
    })
 

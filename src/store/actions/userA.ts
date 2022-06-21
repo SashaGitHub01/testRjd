@@ -1,7 +1,7 @@
 import { TypedThunk } from ".."
 import { PassengersApi } from "../../API/PassengersApi"
 import { PassengerI, PassengerInput } from "../../types/Passenger.types"
-import { ActionsUser, DeleteSeat, AddSeat, UpdateSeat, FetchCreate, SetError } from "../types/user.types"
+import { ActionsUser, DeleteSeat, AddSeat, UpdateSeat, FetchCreate, SetError, CreatePsgrSaga } from "../types/user.types"
 
 interface SeatInput {
    routeId: number,
@@ -16,7 +16,11 @@ export const addSeat = ({ routeId, seatId, price }: SeatInput): AddSeat => (
    }
 )
 
-export const updateSeat = ({ routeId, seatId, data }: Omit<SeatInput, 'price'> & { data: PassengerInput }): UpdateSeat => (
+export const updateSeat = ({
+   routeId,
+   seatId,
+   data
+}: Omit<SeatInput, 'price'> & { data: PassengerInput }): UpdateSeat => (
    {
       type: ActionsUser.UPDATE_SEAT,
       payload: { routeId, seatId, data }
@@ -43,9 +47,17 @@ export const setErr = (err: string): SetError => (
    }
 )
 
+export const createPsgrSaga = (data: Omit<SeatInput, 'price'> & { data: PassengerInput, nav: () => void }): CreatePsgrSaga => (
+   {
+      type: ActionsUser.CREATE_PSGR_SAGA,
+      payload: data
+   }
+)
+
 export const fetchCreatePsgrThunk = (
    input: PassengerInput,
-   seatId: number, routeId: number,
+   seatId: number,
+   routeId: number,
    nav: () => void
 ): TypedThunk => {
    return async (dispatch) => {

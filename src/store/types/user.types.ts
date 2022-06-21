@@ -11,6 +11,7 @@ export enum ActionsUser {
    FETCH_CREATE = 'FETCH_CREATE/user',
    SET_ERROR = 'SET_ERROR/user',
    UPDATE_SEAT = 'UPDATE_SEAT/user',
+   CREATE_PSGR_SAGA = 'CREATE_PSGR_SAGA/user',
 }
 
 export interface IState {
@@ -45,6 +46,15 @@ export interface UpdateSeat {
    }
 }
 
+export interface CreatePsgrSaga {
+   type: ActionsUser.CREATE_PSGR_SAGA,
+   payload: {
+      routeId: number,
+      seatId: number,
+      data: PassengerInput
+   }
+}
+
 export interface FetchCreate {
    type: ActionsUser.FETCH_CREATE,
 }
@@ -58,4 +68,5 @@ export type ActionTypesUser = AddSeat
    | DeleteSeat
    | UpdateSeat
    | FetchCreate
-   | SetError;
+   | SetError
+   | CreatePsgrSaga;
